@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { LogOut, Moon, Sun, Users, BarChart, Settings, UserCog } from 'lucide-react';
+import { LogOut, Moon, Sun, Users, BarChart, Settings, UserCog, Award } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { useTheme } from '../contexts/ThemeContext';
 import ProfileModal from './ProfileModal';
 import ManagementPanel from './ManagementPanel';
 import UserManagement from './UserManagement';
+import PrimePage from './PrimePage';
 
 import ConfigAgent from './ConfigAgent';
 
@@ -15,7 +16,7 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { user, logout, isAdmin, isSuperAdmin } = useAuth();
   const { isDark, toggleTheme } = useTheme();
-  const [activeTab, setActiveTab] = useState<'team' | 'management' | 'users' | 'config'>('team');
+  const [activeTab, setActiveTab] = useState<'team' | 'management' | 'users' | 'config' | 'prime'>('team');
   const [showProfile, setShowProfile] = useState(false);
 
   // Vérification de sécurité supplémentaire
@@ -104,6 +105,17 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               <Users className="w-5 h-5" />
               <span>Équipe</span>
             </button>
+            <button 
+              onClick={() => setActiveTab('prime')}
+              className={`flex items-center space-x-2 px-4 py-3 border-b-2 font-medium transition-colors ${
+                activeTab === 'prime' 
+                  ? 'border-blue-600 text-blue-600 dark:text-blue-400' 
+                  : 'border-transparent text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+              }`}
+            >
+              <Award className="w-5 h-5" />
+              <span>Primes</span>
+            </button>
             {(isAdmin || isSuperAdmin) && (
               <>
                 <button 
@@ -154,6 +166,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       {/* Main Content */}
       <main className="max-w-7xl mx-auto">
         {activeTab === 'team' && children}
+        {activeTab === 'prime' && <PrimePage />}
         {activeTab === 'management' && <ManagementPanel />}
         {activeTab === 'users' && <UserManagement />}
         {activeTab === 'config' && <ConfigAgent />}
