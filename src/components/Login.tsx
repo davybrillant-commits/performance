@@ -148,26 +148,6 @@ const Login: React.FC = () => {
           </button>
         </form>
 
-        {/* Demo accounts with tech styling */}
-        <div className="mt-8 p-4 bg-black/20 backdrop-blur-sm rounded-xl border border-white/10">
-          <div className="flex items-center space-x-2 mb-3">
-            <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
-            <p className="text-sm text-cyan-200 font-medium">
-              Comptes de démonstration
-            </p>
-          </div>
-          <div className="space-y-2 text-xs text-blue-200/80">
-            <div className="flex justify-between items-center p-2 bg-white/5 rounded-lg">
-              <span className="font-mono">MANAGER</span>
-              <span className="font-mono text-cyan-300">••••••</span>
-            </div>
-            <div className="flex justify-between items-center p-2 bg-white/5 rounded-lg">
-              <span className="font-mono">AGENT</span>
-              <span className="font-mono text-cyan-300">••••••</span>
-            </div>
-          </div>
-        </div>
-
         {/* Footer tech elements */}
         <div className="mt-6 text-center">
           <div className="flex items-center justify-center space-x-1 text-xs text-blue-300/60">
