@@ -43,43 +43,43 @@ const Login: React.FC = () => {
       {/* Grid pattern overlay */}
       <div className={"absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%23ffffff\" fill-opacity=\"0.03\"%3E%3Ccircle cx=\"30\" cy=\"30\" r=\"1\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-50"}></div>
 
-      <div className="relative z-10 bg-white/10 backdrop-blur-xl rounded-3xl shadow-2xl p-8 w-full max-w-md border border-white/20">
+      <div className="relative z-10 bg-white/10 backdrop-blur-xl rounded-lg shadow-2xl p-6 w-full max-w-sm border border-white/20">
         {/* Header with tech elements */}
         <div className="text-center mb-8">
-          <div className="relative mx-auto mb-6 w-20 h-20">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-2xl blur-lg opacity-75 animate-pulse"></div>
-            <div className="relative bg-gradient-to-r from-blue-600 to-cyan-500 rounded-2xl w-full h-full flex items-center justify-center">
-              <Database className="w-10 h-10 text-white" />
+          <div className="relative mx-auto mb-4 w-16 h-16">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-lg blur-lg opacity-75 animate-pulse"></div>
+            <div className="relative bg-gradient-to-r from-blue-600 to-cyan-500 rounded-lg w-full h-full flex items-center justify-center">
+              <Database className="w-8 h-8 text-white" />
             </div>
-            <div className="absolute -top-1 -right-1 w-6 h-6 bg-green-400 rounded-full flex items-center justify-center">
-              <Zap className="w-3 h-3 text-white" />
+            <div className="absolute -top-1 -right-1 w-5 h-5 bg-green-400 rounded-full flex items-center justify-center">
+              <Zap className="w-2.5 h-2.5 text-white" />
             </div>
           </div>
           
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent mb-2">
+          <h1 className="text-2xl font-bold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent mb-1">
             TOP GUN
           </h1>
-          <p className="text-blue-200/80 text-sm">
+          <p className="text-blue-200/80 text-xs">
             Performance
           </p>
           
           {/* Status indicators */}
-          <div className="flex items-center justify-center space-x-4 mt-4">
-            <div className="flex items-center space-x-2 text-xs text-green-300">
-              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-              <span>Système actif</span>
+          <div className="flex items-center justify-center space-x-3 mt-3">
+            <div className="flex items-center space-x-1 text-xs text-green-300">
+              <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></div>
+              <span>Actif</span>
             </div>
-            <div className="flex items-center space-x-2 text-xs text-blue-300">
-              <Shield className="w-3 h-3" />
+            <div className="flex items-center space-x-1 text-xs text-blue-300">
+              <Shield className="w-2.5 h-2.5" />
               <span>Sécurisé</span>
             </div>
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="space-y-3">
             <div className="group">
-              <label className="block text-sm font-medium text-blue-200 mb-2 transition-colors group-focus-within:text-white">
+              <label className="block text-xs font-medium text-blue-200 mb-1 transition-colors group-focus-within:text-white">
                 Identifiant d'accès
               </label>
               <div className="relative">
@@ -88,7 +88,7 @@ const Login: React.FC = () => {
                   type="text"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  className="w-full pl-12 pr-4 py-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl focus:ring-2 focus:ring-blue-400 focus:border-transparent text-white placeholder-blue-200/60 transition-all duration-300 hover:bg-white/15"
+                  className="w-full pl-10 pr-4 py-2.5 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent text-white placeholder-blue-200/60 transition-all duration-300 hover:bg-white/15 text-sm"
                   placeholder="Entrez votre identifiant"
                   required
                 />
@@ -96,7 +96,7 @@ const Login: React.FC = () => {
             </div>
 
             <div className="group">
-              <label className="block text-sm font-medium text-blue-200 mb-2 transition-colors group-focus-within:text-white">
+              <label className="block text-xs font-medium text-blue-200 mb-1 transition-colors group-focus-within:text-white">
                 Code d'authentification
               </label>
               <div className="relative">
@@ -105,7 +105,7 @@ const Login: React.FC = () => {
                   type={showPassword ? 'text' : 'password'}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-12 pr-14 py-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl focus:ring-2 focus:ring-blue-400 focus:border-transparent text-white placeholder-blue-200/60 transition-all duration-300 hover:bg-white/15"
+                  className="w-full pl-10 pr-12 py-2.5 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent text-white placeholder-blue-200/60 transition-all duration-300 hover:bg-white/15 text-sm"
                   placeholder="Entrez votre code"
                   required
                 />
@@ -121,7 +121,7 @@ const Login: React.FC = () => {
           </div>
 
           {error && (
-            <div className="bg-red-500/20 backdrop-blur-sm border border-red-400/30 text-red-200 px-4 py-3 rounded-xl text-sm animate-shake">
+            <div className="bg-red-500/20 backdrop-blur-sm border border-red-400/30 text-red-200 px-3 py-2 rounded-lg text-xs animate-shake">
               <div className="flex items-center space-x-2">
                 <div className="w-2 h-2 bg-red-400 rounded-full"></div>
                 <span>{error}</span>
@@ -132,7 +132,7 @@ const Login: React.FC = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 disabled:from-blue-400 disabled:to-cyan-400 text-white font-medium py-4 px-4 rounded-xl transition-all duration-300 flex items-center justify-center space-x-2 transform hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-xl"
+            className="w-full bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 disabled:from-blue-400 disabled:to-cyan-400 text-white font-medium py-2.5 px-4 rounded-lg transition-all duration-300 flex items-center justify-center space-x-2 transform hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-xl text-sm"
           >
             {loading ? (
               <>
@@ -148,14 +148,13 @@ const Login: React.FC = () => {
           </button>
         </form>
 
+      
         {/* Footer tech elements */}
-        <div className="mt-6 text-center">
+        <div className="mt-4 text-center">
           <div className="flex items-center justify-center space-x-1 text-xs text-blue-300/60">
             <span>v2.1.0</span>
             <span>•</span>
-            <span>Sécurisé SSL</span>
-            <span>•</span>
-            <span>Temps réel</span>
+            <span>SSL</span>
           </div>
         </div>
       </div>
