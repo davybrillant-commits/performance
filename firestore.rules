@@ -1,0 +1,63 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Règles pour la collection des utilisateurs
+    match /users/{userId} {
+      // Seuls les utilisateurs connectés peuvent lire les utilisateurs
+      // Les super_admin et admin peuvent tout faire
+      // Les managers peuvent lire tous les utilisateurs mais pas modifier les admin/super_admin
+      // Les agents peuvent seulement lire
+      allow read: if request.auth != null;
+      allow create: if request.auth != null && 
+        (request.auth.token.role == 'super_admin' || 
+         request.auth.token.role == 'admin');
+      allow update: if request.auth != null && 
+        (request.auth.token.role == 'super_admin' || 
+         (request.auth.token.role == 'admin' && resource.data.role != 'super_admin') ||
+         (request.auth.uid == userId && request.auth.token.role in ['manager', 'agent']));
+      allow delete: if request.auth != null && 
+        (request.auth.token.role == 'super_admin' || 
+         (request.auth.token.role == 'admin' && resource.data.role != 'super_admin'));
+    }
+
+    // Règles pour les mots de passe (collection séparée pour la sécurité)
+    match /user_passwords/{docId} {
+      allow read, write: if request.auth != null && 
+        (request.auth.token.role == 'super_admin' || 
+         request.auth.token.role == 'admin');
+    }
+
+    // Règles pour la collection des télévendeurs
+    match /telemarketers/{telemarketerId} {
+      // Lecture: tous les utilisateurs connectés
+      allow read: if request.auth != null;
+      
+      // Création/Modification: managers, admin, super_admin
+      allow create, update: if request.auth != null && 
+        request.auth.token.role in ['manager', 'admin', 'super_admin'];
+      
+      // Suppression: admin et super_admin seulement
+      allow delete: if request.auth != null && 
+        request.auth.token.role in ['admin', 'super_admin'];
+    }
+
+    // Règles pour la collection des équipes
+    match /teams/{teamId} {
+      allow read: if request.auth != null;
+      allow create, update, delete: if request.auth != null && 
+        request.auth.token.role in ['admin', 'super_admin'];
+    }
+
+    // Règles pour les permissions (super_admin seulement)
+    match /permissions/{permissionId} {
+      allow read, write: if request.auth != null && 
+        request.auth.token.role == 'super_admin';
+    }
+
+    // Règles par défaut: refuser tout accès non spécifié
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
