@@ -32,9 +32,9 @@
 
 ### Comptes de démonstration
 
-- **Super Admin** : `super_admin1` / `XABCZ-1`
-- **Admin** : `admin2` / `XABCZ-2`
-- **Manager** : `manager` / `XABCZ`
+- **Super Admin** : `super_admin1` / ``
+- **Admin** : `admin2` / ``
+- **Manager** : `manager` / ``
 - **Agent** : `agent` / `demo123`
 
 ### Bonnes pratiques de sécurité
